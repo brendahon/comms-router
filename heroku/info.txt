@@ -1,0 +1,3 @@
+heroku config:set WEBAPP_RUNNER_OPTS="--context-xml heroku/mysql-connector-java-5.1.47-bin.jar:heroku/context.xml"
+
+heroku war:deploy web/target/comms-router-web.war --includes heroku/mysql-connector-java-5.1.47-bin.jar;heroku/context.xml

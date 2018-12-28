@@ -21,6 +21,7 @@
 <iframe id="frame"></iframe>
 <script type="application/javascript">
   const contextPath = "/" + window.location.pathname.replace("swagger-ui.html", "").split("/").filter(Boolean).join();
+  console.log ("contextPath = " + contextPath);
   const swaggerUI = (!contextPath.endsWith("/") ? contextPath : "" ) + "/webjars/swagger-ui/${swagger-ui.version}/";
   const swaggerJson = "?url=" + window.location.origin + (!contextPath.endsWith("/") ? contextPath : "" ) + "/api/swagger.json";
   document.getElementById("frame").src = swaggerUI + swaggerJson;
