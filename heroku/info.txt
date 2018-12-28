@@ -1,3 +1,6 @@
-heroku config:set WEBAPP_RUNNER_OPTS="--context-xml heroku/mysql-connector-java-5.1.47-bin.jar:heroku/context.xml"
+heroku config:set WEBAPP_RUNNER_OPTS="--enable-naming" 
 
-heroku war:deploy web/target/comms-router-web.war --includes heroku/mysql-connector-java-5.1.47-bin.jar;heroku/context.xml
+heroku war:deploy web/target/comms-router-web.war --includes heroku/tomcat-dbcp.jar;heroku/mysql-connector-java-5.1.47-bin.jar;heroku/context.xml
+
+
+java $JAVA_OPTS -jar webapp-runner.jar ${WEBAPP_RUNNER_OPTS} --port 11363 ./web/target/comms-router-web.war
