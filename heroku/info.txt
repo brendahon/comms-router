@@ -1,6 +1,36 @@
-heroku config:set WEBAPP_RUNNER_OPTS="--enable-naming" 
+heroku config:set WEBAPP_RUNNER_OPTS="--enable-naming --context-xml context.xml --path /comms-router-web" 
 
-heroku war:deploy web/target/comms-router-web.war --includes heroku/tomcat-dbcp.jar;heroku/mysql-connector-java-5.1.47-bin.jar;heroku/context.xml
+heroku war:deploy comms-router-web.war --includes context.xml HEROKU_DEBUG=1 
 
 
 java $JAVA_OPTS -jar webapp-runner.jar ${WEBAPP_RUNNER_OPTS} --port 11363 ./web/target/comms-router-web.war
+
+ -cp web/target/classes:web/target/dependency/*
+
+-cp target/dependency/tomcat-dbcp.jar;target/dependency/mysql-connector-java.jar
+
+heroku config:set JAVA_OPTS="-Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8 -cp target/dependency/tomcat-dbcp.jar;target/dependency/mysql-connector-java.jar"
+
+heroku config
+
+Caused by: java.lang.ClassNotFoundException: org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory
+
+
+web: java $JAVA_OPTS -cp './target/dependency/*.jar' -jar webapp-runner.jar ${WEBAPP_RUNNER_OPTS} --port $PORT ./target/comms-router-web.war
+
+
+curl -X PUT https://cryptic-plateau-25998.herokuapp.com/comms-router-web/api/routers/mlrouter
+
+curl -X PUT https://cryptic-plateau-25998.herokuapp.com/comms-router-web/api/routers/mlrouter/queues/messengerqueue \
+  -H 'Content-Type:application/json' \
+  -d$'{"predicate":"HAS(#{channel},\'messenger\')"}}'
+
+
+curl -X PUT https://cryptic-plateau-25998.herokuapp.com/comms-router-web/api/routers/mlrouter/queues/whatsappqueue \
+  -H 'Content-Type:application/json' \
+  -d$'{"predicate":"HAS(#{channel},\'whatsapp\')"}}' 
+
+https://cryptic-plateau-25998.herokuapp.com/comms-router-web/api/routers/mlrouter
+
+
+

@@ -122,6 +122,24 @@
       <artifactId>swagger-ui</artifactId>
       <version>${swagger-ui.version}</version>
     </dependency>
+    
+    <dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-dbcp2</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-dbcp</artifactId>
+        <version>8.5.33</version>
+	</dependency>
+
+	<dependency>
+		<groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.13</version>
+	</dependency>
+
   </dependencies>
 
   <build>
@@ -133,37 +151,49 @@
       <plugin>
         <groupId>com.heroku.sdk</groupId>
         <artifactId>heroku-maven-plugin</artifactId>
-        <configuration>
-		  <appName>comms-router-web</appName>
-		</configuration>
+		<configuration>
+            <processTypes>
+                <web>java $JAVA_OPTS -cp 'target/dependency/*.jar' webapp.runner.launch.Main target/*.war --enable-naming --port $PORT</web>
+            </processTypes>
+        </configuration>
       </plugin>
-     
-      <plugin>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-dependency-plugin</artifactId>
-           <executions>
-               <execution>
-                   <phase>package</phase>
-                   <goals><goal>copy</goal></goals>
-                   <configuration>
-                       <artifactItems>
-                           <artifactItem>
-                               <groupId>com.github.jsimone</groupId>
-                               <artifactId>webapp-runner</artifactId>
-                               <version>9.0.13.0</version>
-                               <destFileName>webapp-runner.jar</destFileName>
-                           </artifactItem>
-                           <artifactItem>
-                                <groupId>org.apache.tomcat</groupId>
-                                <artifactId>tomcat-dbcp</artifactId>
-                                <version>8.5.33</version>
-                            </artifactItem>
-                       </artifactItems>
-                   </configuration>
-               </execution>
-           </executions>
-       </plugin>
-   
+
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>copy</goal>
+					</goals>
+					<configuration>
+						<artifactItems>
+							<artifactItem>
+								<groupId>com.github.jsimone</groupId>
+								<artifactId>webapp-runner</artifactId>
+								<version>9.0.13.0</version>
+								<destFileName>webapp-runner.jar</destFileName>
+							</artifactItem>
+							<artifactItem>
+	                               <groupId>org.apache.tomcat</groupId>
+	                               <artifactId>tomcat-dbcp</artifactId>
+	                               <version>8.5.33</version>
+	                               <destFileName>tomcat-dbcp.jar</destFileName>
+	                           </artifactItem>
+	                           
+	                           <artifactItem>
+							    <groupId>mysql</groupId>
+							    <artifactId>mysql-connector-java</artifactId>
+							    <version>8.0.13</version>
+							    <destFileName>mysql-connector-java.jar</destFileName>
+							</artifactItem>
+						</artifactItems>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	  
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <groupId>org.apache.maven.plugins</groupId>
