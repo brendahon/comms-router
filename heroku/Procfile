@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -cp mysql-connector-java.jar -jar webapp-runner.jar ${WEBAPP_RUNNER_OPTS} --port $PORT ./comms-router-web.war
