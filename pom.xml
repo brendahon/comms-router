@@ -288,7 +288,7 @@
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
-        <version>2.8.2</version>
+        <version>2.12.4</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -298,7 +298,7 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>25.0-jre</version>
+        <version>32.0.0-jre</version>
       </dependency>
       <dependency>
         <groupId>net.jodah</groupId>
@@ -308,7 +308,7 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
-        <version>5.2.11.Final</version>
+        <version>5.3.20.Final</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate</groupId>
@@ -323,12 +323,12 @@
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>2.8.4</version>
+        <version>2.12.7.1</version>
       </dependency>
       <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
-        <version>20080701</version>
+        <version>20231013</version>
       </dependency>
       <dependency>
         <groupId>com.nexmo</groupId>
@@ -349,7 +349,7 @@
       <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
-        <version>3.5.3</version>
+        <version>4.8.0</version>
       </dependency>
       <dependency>
         <groupId>com.googlecode.libphonenumber</groupId>
@@ -375,7 +375,7 @@
       <dependency>
         <groupId>org.pac4j</groupId>
         <artifactId>pac4j-saml</artifactId>
-        <version>2.3.1</version>
+        <version>3.8.2</version>
       </dependency>
       <dependency>
         <groupId>org.pac4j</groupId>
@@ -448,7 +448,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>4.13.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -483,7 +483,7 @@
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
-        <version>1.4.196</version>
+        <version>2.2.220</version>
         <scope>test</scope>
       </dependency>
       <dependency>
